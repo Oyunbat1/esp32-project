@@ -1,0 +1,147 @@
+#include <WiFi.h>
+#include <ESPAsyncWebServer.h>
+#include <AsyncTCP.h>
+#include <LittleFS.h>
+
+// WiFi credentials
+const char* ssid = "ESP32-Exam-System";
+const char* password = "password123";
+
+// Server
+AsyncWebServer server(80);
+
+// Admin and Customer credentials
+String adminUsername = "admin";
+String adminPassword = "admin123";
+String customerUsername = "customer";
+String customerPassword = "customer123";
+
+// Persistent storage file paths
+const char* EXAM_FILE = "/exam.json";
+const char* RESULTS_FILE = "/result.txt";
+
+void setup() {
+  // Initialize Serial Monitor
+  Serial.begin(115200);
+
+  // Initialize LittleFS
+  if (!LittleFS.begin()) {
+    Serial.println("Failed to mount LittleFS");
+    return;
+  }
+
+  // Start WiFi in Access Point Mode
+  WiFi.softAP(ssid, password);
+  Serial.println("Access Point Started");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.softAPIP());
+
+  // Serve login page
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
+    request->send(LittleFS, "/login.html", "text/html");
+  });
+
+  // Handle login
+  server.on("/login", HTTP_POST, [](AsyncWebServerRequest* request) {
+    String username = request->arg("username");
+    String password = request->arg("password");
+
+    if (username == adminUsername && password == adminPassword) {
+      request->redirect("/admin");
+    } else if (username == customerUsername && password == customerPassword) {
+      request->redirect("/customer");
+    } else {
+      request->send(401, "text/plain", "Invalid credentials!");
+    }
+  });
+
+  // Admin page to set exam
+  server.on("/admin", HTTP_GET, [](AsyncWebServerRequest* request) {
+    request->send(LittleFS, "/admin.html", "text/html");
+  });
+
+  server.on("/save-exam", HTTP_POST, [](AsyncWebServerRequest* request) {
+    String examData = request->arg("examData");
+    File file = LittleFS.open(EXAM_FILE, "w");
+    if (file) {
+      file.print(examData);
+      file.close();
+      request->send(200, "text/plain", "Exam saved successfully!");
+    } else {
+      request->send(500, "text/plain", "Failed to save exam.");
+    }
+  });
+
+  // Customer page to answer exam
+  server.on("/customer", HTTP_GET, [](AsyncWebServerRequest* request) {
+    if (LittleFS.exists(EXAM_FILE)) {
+      request->send(LittleFS, "/customer.html", "text/html");
+    } else {
+      request->send(404, "text/plain", "Exam not found.");
+    }
+  });
+
+  server.on("/submit-answers", HTTP_POST, [](AsyncWebServerRequest* request) {
+    String answers = request->arg("answers");
+
+    //writeFile(LittleFS, "/result.txt", "Hello ");
+    readFile(LittleFS, "/result.txt");
+/*
+    File file = LittleFS.open(RESULTS_FILE, "a");
+    if (file) {
+      file.println(answers);
+      file.close();
+      request->send(200, "text/plain", "Answers submitted successfully!");
+    } else {
+      request->send(500, "text/plain", "Failed to submit answers.");
+    }
+*/
+  });
+  // Download results
+  server.on("/results", HTTP_GET, [](AsyncWebServerRequest* request) {
+    if (LittleFS.exists(RESULTS_FILE)) {
+      request->send(LittleFS, RESULTS_FILE, "text/plain");
+    } else {
+      request->send(404, "text/plain", "Results not found.");
+    }
+  });
+
+  // Start the server
+  server.begin();
+}
+
+void writeFile(fs::FS &fs, const char * path, const char * message){
+  Serial.printf("Writing file: %s\r\n", path);
+
+  File file = fs.open(path, FILE_WRITE);
+  if(!file){
+    Serial.println("- failed to open file for writing");
+    return;
+  }
+  if(file.print(message)){
+    Serial.println("- file written");
+  } else {
+    Serial.println("- write failed");
+  }
+  file.close();
+}
+
+void readFile(fs::FS &fs, const char * path){
+  Serial.printf("Reading file: %s\r\n", path);
+
+  File file = fs.open(path);
+  if(!file || file.isDirectory()){
+    Serial.println("- failed to open file for reading");
+    return;
+  }
+
+  Serial.println("- read from file:");
+  while(file.available()){
+    Serial.write(file.read());
+  }
+  file.close();
+}
+
+void loop() {
+  // Nothing to do here
+}
