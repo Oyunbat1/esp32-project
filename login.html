@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <title>Exam Page</title>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .bg-image {
+        background-image: url('./bg-image.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bg-image .opacity {
+        background-color: #fff;
+        height: 350px;
+        width: 400px;
+        position: absolute;
+        opacity: 0.7;
+        border-radius: 10px;
+
+    }
+
+    .bg-image .container {
+        background-color: transparent;
+        height: 350px;
+        width: 400px;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px darkcyan dashed;
+        border-radius: 10px;
+    }
+
+    .bg-image .container .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+    }
+
+    .bg-image .container .form h2 {
+        font-size: 26px;
+        margin-top: 20px;
+    }
+
+
+    .bg-image .container .form form {
+        height: 140px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .bg-image .container .form form input {
+        width: 300px;
+        height: 30px;
+        border-radius: 6px;
+        border: none;
+        border: 1px darkcyan dashed;
+    }
+
+
+    .bg-image .container .form form button {
+        width: 300px;
+        height: 30px;
+        border-radius: 6px;
+        border: none;
+        border: 1px darkcyan dashed;
+        background-color: rgb(222, 222, 222);
+        transition: all 0.3s;
+    }
+
+    .bg-image .container .form form button:hover {
+        background-color: rgb(138, 138, 138);
+        color: #ffF;
+        transition: all 0.3s;
+    }
+
+    @media (max-width:760px) {
+        .bg-image .opacity {
+            height: 350px;
+            width: 320px;
+        }
+
+        .bg-image .container .form h2 {
+            font-size: 20px;
+            margin-top: 20px
+        }
+    }
+</style>
+
+<body>
+    <div class="bg-image">
+        <div class="opacity"></div>
+        <div class="container">
+            <div class="form">
+                <h2>Цахим шалгалтын систем</h2>
+                <form action="/login" method="GET">
+                    <input type="text" name="username" placeholder="Username" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
+                    <button type="submit">Нэвтрэх</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
