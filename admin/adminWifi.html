@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Wifi</title>
   </head>
   <style>
     body {
@@ -22,12 +22,12 @@
     }
     .container .logo {
       display: flex;
-      justify-content: space-around;
+      justify-content: start;
       gap: 180px;
       align-items: center;
-      width: 100%;
       position: absolute;
       top: 30px;
+      left: 30px;
     }
     .container .logo img {
       width: 60px;
@@ -128,65 +128,22 @@
     .container form button:focus {
       background-color: rgb(0, 0, 0);
     }
-    .menu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 20px;
-      right: 90px;
-      background: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .menu a {
-      padding: 10px 20px;
-      text-decoration: none;
-      color: black;
-      display: block;
-    }
-
-    .menu a:first-child {
-      border-bottom: 1px solid #333;
-    }
-
-    .menu a:hover {
-      background: #f0f0f0;
-    }
-
-    .hamburger {
-      cursor: pointer;
-      font-size: 24px;
-      padding: 10px;
-      position: relative;
-    }
-
-    .hamburger:hover + .menu,
-    .menu:hover {
-      display: flex;
-    }
   </style>
   <body>
     <div class="container">
       <div class="logo">
         <div><img src="/mubis_logo.png" /></div>
-        <div class="hamburger">☰</div>
-        <div class="menu">
-          <a href="page1.html">Админ</a>
-          <a href="page2.html">Хэрэглэгч</a>
-        </div>
       </div>
-      <form id="loginForm" action="/login" method="GET">
-        <h1>Цахим шалгалтын систем</h1>
+      <form id="loginForm" action="/connect" method="GET">
+        <h1>Админ</h1>
         <div class="form-group">
           <div class="upper">
-            <label for="username">Нэвтрэх нэр <span>*</span></label>
+            <label for="username">Wifi нэр <span>*</span></label>
             <input
               type="text"
-              id="username"
-              name="username"
-              placeholder="Нэвтрэх нэрээ оруулна уу"
+              id="ssid"
+              name="ssid"
+              placeholder="Wifi нэрээ оруулна уу"
             />
           </div>
           <p
@@ -200,10 +157,10 @@
               left: 10px;
             "
           >
-            Та нэвтрэх нэрээ оруулна уу!
+            Та wifi нэрээ оруулна уу!
           </p>
           <div class="down">
-            <label for="password">Нууц үг <span>*</span></label>
+            <label for="password">Wifi нууц үг <span>*</span></label>
             <input
               type="password"
               id="password"
@@ -229,14 +186,14 @@
             <p>Нууц үг харах</p>
           </div>
         </div>
-        <button type="submit" id="HandleSubmit">Нэвтрэх</button>
+        <button type="submit" id="HandleSubmit">Үргэлжлүүлэх</button>
       </form>
     </div>
   </body>
   <script>
     const checkbox = document.getElementById("showPassword");
     const passwordInput = document.getElementById("password");
-    const usernameInput = document.getElementById("username");
+    const usernameInput = document.getElementById("ssid");
     const form = document.getElementById("loginForm");
     const errorMessage1 = document.getElementById("errorMessage1");
     const errorMessage2 = document.getElementById("errorMessage2");
@@ -280,12 +237,6 @@
         errorMessage1.style.display = "block";
         errorMessage2.style.display = "block";
       }
-    });
-    document.querySelector(".hamburger").addEventListener("click", function () {
-      document.querySelector(".menu").style.display =
-        document.querySelector(".menu").style.display === "block"
-          ? "none"
-          : "block";
     });
   </script>
 </html>

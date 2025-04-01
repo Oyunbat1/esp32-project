@@ -1,0 +1,122 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  .container .logo {
+    display: flex;
+    justify-content: start;
+    gap: 180px;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+  .container .logo img {
+    width: 60px;
+    height: 60px;
+  }
+  .container form {
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 340px;
+    height: 400px;
+  }
+  .container form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  .container form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 60px;
+    position: relative;
+  }
+  .container form .form-group .upper {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .container form .form-group .down {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .container form .form-group label {
+    font-size: 12px;
+    color: #555;
+  }
+  .container form .form-group label span {
+    color: red;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+  .container form .form-group input {
+    padding: 10px;
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  .container form .form-group input:hover {
+    border-color: #131313;
+    outline: none;
+  }
+  .container form .form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  .container form .form-group input::placeholder {
+    font-size: 12px;
+  }
+
+  .container form .form-group .checkbox-group input {
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+  }
+
+  .container form .form-group .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .container form .form-group .checkbox-group p {
+    font-size: 12px;
+    color: #555;
+  }
+  .container form button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 30px;
+  }
+  .container form button:hover {
+    background-color: #007bff;
+    transition: all 0.3s ease;
+    background-color: #333;
+  }
+  .container form button:focus {
+    background-color: rgb(0, 0, 0);
+  }

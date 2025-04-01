@@ -205,8 +205,6 @@ background-position: center; */
     .bg-image-1 .container form {
         height: 280px;
         width: 400px;
-        /* overflow-y: scroll;
-overflow-anchor: none; */
         text-align: center;
         justify-content: center;
         display: grid;
