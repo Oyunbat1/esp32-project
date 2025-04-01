@@ -1,122 +1,224 @@
 <!DOCTYPE html>
-<html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<head>
-    <title>Exam Page</title>
-</head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      box-sizing: border-box;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .container form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 340px;
+      height: 400px;
+    }
+    .container form h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+    .container form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-top: 60px;
+      position: relative;
+    }
+    .container form .form-group .upper {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .container form .form-group .down {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .container form .form-group label {
+      font-size: 12px;
+      color: #555;
+    }
+    .container form .form-group label span {
+      color: red;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+    .container form .form-group input {
+      padding: 10px;
+      border: 1px solid #9b9b9b;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .container form .form-group input:hover {
+      border-color: #131313;
+      outline: none;
+    }
+    .container form .form-group input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    .container form .form-group input::placeholder {
+      font-size: 12px;
     }
 
-    .bg-image {
-        background-color: rgb(77, 252, 182);
-        /* background-image: url('./bg-image.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; */
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .container form .form-group .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      margin-right: 4px;
     }
 
-    .bg-image .opacity {
-        background-color: #fff;
-        height: 350px;
-        width: 400px;
-        position: absolute;
-        border-radius: 10px;
+    .container form .form-group .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-
-    .bg-image .container {
-        background-color: transparent;
-        height: 350px;
-        width: 400px;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* border: 1px darkcyan dashed; */
-        border-radius: 10px;
+    .container form .form-group .checkbox-group p {
+      font-size: 12px;
+      color: #555;
     }
-
-    .bg-image .container .form {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        height: 100%;
+    .container form button {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      padding: 10px;
+      background-color: black;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 30px;
     }
-
-    .bg-image .container .form h2 {
-        font-size: 26px;
-        margin-top: 20px;
+    .container form button:hover {
+      background-color: #007bff;
+      transition: all 0.3s ease;
+      background-color: #333;
     }
-
-    .bg-image .container .form form {
-        height: 140px;
-        width: 300px;
-        display: flex;
-        flex-direction: column;
+    .container form button:focus {
+      background-color: rgb(0, 0, 0);
     }
-
-    .bg-image .container .form form input {
-        width: 300px;
-        height: 30px;
-        border-radius: 6px;
-        border: none;
-        border: 1px darkcyan dashed;
-    }
-
-    .bg-image .container .form form button {
-        width: 300px;
-        height: 30px;
-        border-radius: 6px;
-        border: none;
-        border: 1px darkcyan dashed;
-        background-color: rgb(77, 252, 182);
-        transition: all 0.5s;
-    }
-
-    .bg-image .container .form form button:hover {
-        background-color: rgb(16, 111, 73);
-        color: #ffF;
-        transition: all 0.5s;
-    }
-
-    @media (max-width:760px) {
-        .bg-image .opacity {
-            height: 350px;
-            width: 320px;
-        }
-
-        .bg-image .container .form h2 {
-            font-size: 20px;
-            margin-top: 20px
-        }
-    }
-</style>
-
-<body>
-    <div class="bg-image">
-        <div class="opacity"></div>
-        <div class="container">
-            <div class="form">
-                <h2>Цахим шалгалтын систем</h2>
-                <form action="/login" method="GET">
-                    <input type="text" name="username" placeholder="Username" required><br>
-                    <input type="password" name="password" placeholder="Password" required><br>
-                    <button type="submit">Нэвтрэх</button>
-                </form>
-            </div>
+  </style>
+  <body>
+    <div class="container">
+      <form id="loginForm" action="/login" method="GET">
+        <h1>Цахим шалгалтын систем</h1>
+        <div class="form-group">
+          <div class="upper">
+            <label for="username">Нэвтрэх нэр <span>*</span></label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Нэвтрэх нэрээ оруулна уу"
+            />
+          </div>
+          <p
+            id="errorMessage1"
+            style="
+              color: red;
+              display: none;
+              position: absolute;
+              font-size: 10px;
+              top: 60px;
+              left: 10px;
+            "
+          >
+            Та нэвтрэх нэр болон нууц үг оруулна уу!
+          </p>
+          <div class="down">
+            <label for="password">Нууц үг <span>*</span></label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Нууц үгээ оруулна уу"
+            />
+          </div>
+          <p
+            id="errorMessage2"
+            style="
+              color: red;
+              display: none;
+              position: absolute;
+              font-size: 10px;
+              top: 150px;
+              left: 10px;
+            "
+          >
+            Та Нэвтрэх нэр болон Нууц үг оруулна уу!
+          </p>
+          <div class="checkbox-group">
+            <input type="checkbox" id="showPassword" name="remember" />
+            <p>Нууц үг харах</p>
+          </div>
         </div>
+        <button type="submit" id="HandleSubmit">Нэвтрэх</button>
+      </form>
     </div>
-</body>
+  </body>
+  <script>
+    const checkbox = document.getElementById("showPassword");
+    const passwordInput = document.getElementById("password");
+    const usernameInput = document.getElementById("username");
+    const form = document.getElementById("loginForm");
+    const errorMessage1 = document.getElementById("errorMessage1");
+    const errorMessage2 = document.getElementById("errorMessage2");
 
+    checkbox.addEventListener("change", function () {
+      if (checkbox.checked) {
+        passwordInput.setAttribute("type", "text");
+      } else {
+        passwordInput.setAttribute("type", "password");
+      }
+    });
+
+    form.addEventListener("submit", function (event) {
+      if (usernameInput.value === "" || passwordInput.value === "") {
+        event.preventDefault();
+        errorMessage1.style.display = "block";
+        errorMessage2.style.display = "block";
+      } else {
+        errorMessage1.style.display = "none";
+        errorMessage2.style.display = "none";
+      }
+    });
+
+    usernameInput.addEventListener("input", function () {
+      if (usernameInput.value !== "") {
+        errorMessage1.style.display = "none";
+      }
+
+      if (usernameInput.value === "" && passwordInput.value === "") {
+        errorMessage1.style.display = "block";
+        errorMessage2.style.display = "block";
+      }
+    });
+
+    passwordInput.addEventListener("input", function () {
+      if (passwordInput.value !== "") {
+        errorMessage2.style.display = "none";
+      }
+
+      if (usernameInput.value === "" && passwordInput.value === "") {
+        errorMessage1.style.display = "block";
+        errorMessage2.style.display = "block";
+      }
+    });
+  </script>
 </html>

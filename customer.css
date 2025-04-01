@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(77, 252, 182);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container .fixed-title {
+    width: 360px;
+    background-color: #fff;
+    border-radius: 0px 0px 10px 10px;
+    border: 1px darkcyan dashed;
+    display: none;
+}
+
+.container .left-section {
+    width: 38vw;
+    background-color: #fff;
+    height: 70vh;
+    border: 1px darkcyan dashed;
+    top: 4px;
+}
+
+.container .left-section .exam-pdf {
+    height: 70vh;
+}
+
+.container .left-section .exam-pdf iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.container .right-section {
+    width: 38vw;
+    border: 1px darkcyan dashed;
+}
+
+.container .right-section .questions {
+    max-height: 70vh;
+    overflow-y: scroll;
+
+}
+
+.container .right-section .questions form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.container .right-section .questions form .footer {
+    position: fixed;
+    bottom: 112px;
+    background-color: #fff;
+    width: 360px;
+    height: 82px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.container .right-section .questions form .footer .last-input {
+    text-align: center;
+}
+
+.container .right-section .questions form .footer .last-input input {
+    width: 300px;
+    border: 1px darkcyan dashed;
+    padding: 3px;
+}
+
+.container .right-section .questions form .footer .last-input p {
+    margin-bottom: 4px;
+}
+
+.container .right-section .questions form .footer .btn button {
+    width: 300px;
+    border: 1px darkcyan dashed;
+    font-size: 12px;
+    padding: 3px;
+    background-color: rgb(77, 252, 182);
+    transition: all 0.5s;
+}
+
+.container .right-section .questions form .footer .btn button:hover {
+    background-color: rgb(16, 111, 73);
+    transition: all 0.5s;
+    color: #fff;
+}
+
+.container .right-section .questions form .form-container {
+    width: 360px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.container .right-section .questions form .form-container .options {
+    text-align: center;
+    padding: 14px 2px;
+}
+
+.container .right-section .questions form .form-container .options label {
+    padding: 0px 4px;
+    margin-top: 3px;
+}
+
+.container .right-section .questions form .form-container .options h3 {
+    margin-bottom: 4px;
+}
+
+/* ----------------------- mobile --------------------- */
+@media screen and (max-width:460px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .container .fixed-title {
+        width: 360px;
+        position: fixed;
+        top: 300px;
+        background-color: #fff;
+        border-radius: 0px 0px 10px 10px;
+        border: 1px darkcyan dashed;
+        display: block;
+    }
+
+    .container .left-section .exam-pdf iframe {
+        width: 100%;
+        height: 294px;
+    }
+
+    .container .left-section {
+        width: 360px;
+        background-color: #fff;
+        height: 300px;
+        border: 1px darkcyan dashed;
+        position: fixed;
+        top: 4px;
+    }
+
+    .container .right-section {
+        margin-top: 186px;
+        height: 264px;
+        width: 360px;
+        background-color: red;
+    }
+
+    .container .right-section .questions {
+        max-height: 350px;
+        overflow-y: scroll;
+        border: 1px darkcyan dashed;
+
+    }
+
+    .container .right-section .questions form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: aqua;
+        margin-bottom: 10px;
+
+    }
+
+    .container .right-section .questions form .footer {
+        background-color: #fff;
+        position: fixed;
+        bottom: 10px;
+        width: 360px;
+        height: 82px;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .container .right-section .questions form .footer .last-input {
+        text-align: center;
+    }
+
+    .container .right-section .questions form .footer .last-input input {
+        width: 300px;
+        border: 1px darkcyan dashed;
+        padding: 3px;
+    }
+
+    .container .right-section .questions form .footer .last-input p {
+        margin-bottom: 4px;
+    }
+
+    .container .right-section .questions form .footer .btn button {
+        width: 300px;
+        border: 1px darkcyan dashed;
+        font-size: 12px;
+        padding: 3px;
+        background-color: rgb(77, 252, 182);
+        transition: all 0.5s;
+    }
+
+    .container .right-section .questions form .footer .btn button:hover {
+        background-color: rgb(16, 111, 73);
+        transition: all 0.5s;
+    }
+
+    .container .right-section .questions form .form-container {
+        width: 360px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container .right-section .questions form .form-container .options {
+        text-align: center;
+        padding: 14px 2px;
+    }
+
+    .container .right-section .questions form .form-container .options label {
+        padding: 0px 4px;
+        margin-top: 3px;
+    }
+
+    .container .right-section .questions form .form-container .options h3 {
+        margin-bottom: 4px;
+    }
+}
+
+/*------ tablet ----------- */
+
+@media screen and (min-width:461px) and (max-width:1024px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 4em;
+    }
+
+    .container .fixed-title {
+        width: 360px;
+        background-color: #fff;
+        border-radius: 0px 0px 10px 10px;
+        border: 1px darkcyan dashed;
+        display: none;
+    }
+
+    .container .left-section .exam-pdf iframe {
+        width: 100%;
+        height: 294px;
+    }
+
+    .container .left-section {
+        width: 360px;
+        background-color: #fff;
+        height: 504px;
+        border: 1px darkcyan dashed;
+    }
+
+    .container .right-section {
+
+        height: 504px;
+        width: 360px;
+    }
+
+    .container .right-section .questions {
+        max-height: 400px;
+        overflow-y: scroll;
+    }
+
+    .container .right-section .questions form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: aqua;
+        margin-bottom: 10px;
+
+    }
+
+    .container .right-section .questions form .footer {
+        background-color: #fff;
+        /* position: fixed; */
+        /* bottom: 10px; */
+        margin-bottom: 65px;
+        width: 360px;
+        height: 82px;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .container .right-section .questions form .footer .last-input {
+        text-align: center;
+    }
+
+    .container .right-section .questions form .footer .last-input input {
+        width: 300px;
+        border: 1px darkcyan dashed;
+        padding: 3px;
+    }
+
+    .container .right-section .questions form .footer .last-input p {
+        margin-bottom: 4px;
+    }
+
+    .container .right-section .questions form .footer .btn button {
+        width: 300px;
+        border: 1px darkcyan dashed;
+        font-size: 12px;
+        padding: 3px;
+        background-color: rgb(77, 252, 182);
+        transition: all 0.5s;
+    }
+
+    .container .right-section .questions form .footer .btn button:hover {
+        background-color: rgb(16, 111, 73);
+        transition: all 0.5s;
+    }
+
+    .container .right-section .questions form .form-container {
+        width: 360px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container .right-section .questions form .form-container .options {
+        text-align: center;
+        padding: 14px 2px;
+    }
+
+    .container .right-section .questions form .form-container .options label {
+        padding: 0px 4px;
+        margin-top: 3px;
+    }
+
+    .container .right-section .questions form .form-container .options h3 {
+        margin-bottom: 4px;
+    }
+}
