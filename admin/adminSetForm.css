@@ -76,6 +76,7 @@ body {
     border-color: #131313;
     outline: none;
   }
+  
   .container form .form-group input:focus {
     border-color: #007bff;
     outline: none;
