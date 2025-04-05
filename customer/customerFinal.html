@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SetForm</title>
-    <link rel="stylesheet" href="./customerTest2.css" />
   </head>
   <style>
     html {
@@ -37,7 +36,6 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       width: 420px;
-
       margin-top: 80px;
       position: relative;
       display: flex;
@@ -52,13 +50,13 @@
       padding-bottom: 20px;
     }
     /* .container .form .questions  {
-  
-      } */
+
+    } */
     .container .form .questions .backdrop {
       background-color: white;
       color: black;
       border: black 1px solid;
-      height: 340px;
+      height: 220px;
       width: 390px;
       border-radius: 8px;
       display: flex;
@@ -69,7 +67,7 @@
       margin-top: 10px;
     }
     .container .form .questions form {
-      height: 190px;
+      height: 100px;
       overflow-y: scroll;
       scrollbar-width: none;
       -ms-overflow-style: none;
@@ -137,13 +135,21 @@
     }
     .container .form .exam-pdf {
       width: 400px;
-      height: 420px;
+      height: 560px;
       border-radius: 8px;
       background-color: white;
       border: black 1px solid;
     }
+    .container .form .exam-pdf h1 {
+      font-size: 18px;
+      font-weight: 400;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+      margin-left: 4px;
+    }
     .container .form .exam-pdf iframe {
-      height: 520px;
+      height: 500px;
+
       width: 100%;
       border-radius: 8px;
     }
@@ -249,6 +255,7 @@
         </div>
         <div class="form">
           <div class="exam-pdf">
+            <h1>Шалгалт бөглөх хэсэг</h1>
             <iframe
               src="example.pdf"
               frameborder="0"
