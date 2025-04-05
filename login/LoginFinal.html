@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      box-sizing: border-box;
+    }
+    .container {
+      background-image: url("/mubis_logo.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .container .filter {
+      backdrop-filter: blur(2px);
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container form {
+      background-color: white;
+
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 340px;
+      height: auto;
+    }
+    .container .filter form h1 {
+      font-family: "Poppins", sans-serif;
+      font-weight: 200;
+      text-align: center;
+      font-size: 22px !important;
+    }
+
+    .tabs {
+      display: flex;
+      background-color: #0118d8;
+      padding: 6px;
+      border-radius: 6px;
+      gap: 6px;
+    }
+    .tabs button {
+      padding: 10px 20px;
+      background-color: #1b56fd;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      flex: 1;
+    }
+    .tabs button:hover {
+      background-color: white;
+      color: black;
+      transition: all 0.3s ease;
+    }
+    .tabs button.active {
+      background-color: white;
+      color: black;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-top: 16px;
+      position: relative;
+    }
+    .form-group .upper,
+    .form-group .down {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .form-group label {
+      font-size: 12px;
+      color: #555;
+    }
+    .form-group label span {
+      color: red;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+    .form-group input {
+      padding: 10px;
+      border: 1px solid #9b9b9b;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .form-group input:hover {
+      border-color: #131313;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    .form-group input::placeholder {
+      font-size: 12px;
+    }
+    .form-group .checkbox-group input {
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
+    .form-group .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      position: absolute;
+      top: 150px;
+      right: 10px;
+    }
+    .form-group .checkbox-group p {
+      font-size: 12px;
+      color: #555;
+    }
+    .footer-button {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      padding: 10px;
+      background-color: #0118d8;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 60px;
+    }
+    .footer-button:hover {
+      background-color: #1b56fd;
+      transition: all 0.3s ease;
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="filter">
+        <form id="loginForm" action="/login" method="GET">
+          <h1 style="font-size: 26px">Цахим шалгалтын систем</h1>
+          <div class="tabs">
+            <button
+              type="button"
+              class="tab-trigger active"
+              onclick="showTab('accountTab')"
+            >
+              Хэрэглэгч
+            </button>
+            <button
+              type="button"
+              class="tab-trigger"
+              onclick="showTab('adminTab')"
+            >
+              Админ
+            </button>
+          </div>
+
+          <div id="accountTab" class="tab-content active">
+            <div class="form-group">
+              <div class="upper">
+                <label for="username">Нэвтрэх нэр <span>*</span></label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Нэвтрэх нэрээ оруулна уу"
+                />
+              </div>
+              <p
+                id="errorMessage1"
+                style="
+                  color: red;
+                  display: none;
+                  position: absolute;
+                  font-size: 10px;
+                  top: 58px;
+                  left: 10px;
+                "
+              >
+                Та нэвтрэх нэрээ оруулна уу!
+              </p>
+
+              <div class="down">
+                <label for="password">Нууц үг <span>*</span></label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Нууц үгээ оруулна уу"
+                />
+              </div>
+              <p
+                id="errorMessage2"
+                style="
+                  color: red;
+                  display: none;
+                  position: absolute;
+                  font-size: 10px;
+                  top: 144px;
+                  left: 10px;
+                "
+              >
+                Нууц үг оруулна уу!
+              </p>
+
+              <div class="checkbox-group">
+                <input type="checkbox" id="showPassword" name="remember" />
+                <p>Нууц үг харах</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="adminTab" class="tab-content">
+            <div class="form-group">
+              <div class="upper">
+                <label for="adminUsername"
+                  >Нэвтрэх нэр (Админ) <span>*</span></label
+                >
+                <input
+                  type="text"
+                  id="adminUsername"
+                  name="adminUsername"
+                  placeholder="Нэвтрэх нэрээ оруулна уу"
+                />
+              </div>
+              <p
+                id="errorMessage1Admin"
+                style="
+                  color: red;
+                  display: none;
+                  position: absolute;
+                  font-size: 10px;
+                  top: 58px;
+                  left: 10px;
+                "
+              >
+                Та нэвтрэх нэрээ оруулна уу!
+              </p>
+
+              <div class="down">
+                <label for="adminPassword"
+                  >Нууц үг (Админ) <span>*</span></label
+                >
+                <input
+                  type="password"
+                  id="adminPassword"
+                  name="adminPassword"
+                  placeholder="Нууц үгээ оруулна уу"
+                />
+              </div>
+              <p
+                id="errorMessage2Admin"
+                style="
+                  color: red;
+                  display: none;
+                  position: absolute;
+                  font-size: 10px;
+                  top: 144px;
+                  left: 10px;
+                "
+              >
+                Нууц үг оруулна уу!
+              </p>
+
+              <div class="checkbox-group">
+                <input
+                  type="checkbox"
+                  id="adminShowPassword"
+                  name="adminRemember"
+                />
+                <p>Нууц үг харах</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="footer-button" type="submit" id="HandleSubmit">
+            Нэвтрэх
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const checkbox = document.getElementById("showPassword");
+      const passwordInput = document.getElementById("password");
+      const usernameInput = document.getElementById("username");
+      const form = document.getElementById("loginForm");
+      const errorMessage1 = document.getElementById("errorMessage1");
+      const errorMessage2 = document.getElementById("errorMessage2");
+
+      const adminCheckbox = document.getElementById("adminShowPassword");
+      const adminPasswordInput = document.getElementById("adminPassword");
+      const adminUsernameInput = document.getElementById("adminUsername");
+      const errorMessage1Admin = document.getElementById("errorMessage1Admin");
+      const errorMessage2Admin = document.getElementById("errorMessage2Admin");
+
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          passwordInput.setAttribute("type", "text");
+        } else {
+          passwordInput.setAttribute("type", "password");
+        }
+      });
+
+      adminCheckbox.addEventListener("change", function () {
+        if (adminCheckbox.checked) {
+          adminPasswordInput.setAttribute("type", "text");
+        } else {
+          adminPasswordInput.setAttribute("type", "password");
+        }
+      });
+
+      form.addEventListener("submit", function (event) {
+        if (usernameInput.value === "" || passwordInput.value === "") {
+          event.preventDefault();
+          errorMessage1.style.display = "block";
+          errorMessage2.style.display = "block";
+        } else {
+          errorMessage1.style.display = "none";
+          errorMessage2.style.display = "none";
+        }
+
+        if (
+          adminUsernameInput.value === "" ||
+          adminPasswordInput.value === ""
+        ) {
+          event.preventDefault();
+          errorMessage1Admin.style.display = "block";
+          errorMessage2Admin.style.display = "block";
+        } else {
+          errorMessage1Admin.style.display = "none";
+          errorMessage2Admin.style.display = "none";
+        }
+      });
+
+      usernameInput.addEventListener("input", function () {
+        if (usernameInput.value !== "") {
+          errorMessage1.style.display = "none";
+        }
+      });
+
+      passwordInput.addEventListener("input", function () {
+        if (passwordInput.value !== "") {
+          errorMessage2.style.display = "none";
+        }
+      });
+
+      adminUsernameInput.addEventListener("input", function () {
+        if (adminUsernameInput.value !== "") {
+          errorMessage1Admin.style.display = "none";
+        }
+      });
+
+      adminPasswordInput.addEventListener("input", function () {
+        if (adminPasswordInput.value !== "") {
+          errorMessage2Admin.style.display = "none";
+        }
+      });
+
+      function showTab(tabId) {
+        const tabs = document.querySelectorAll(".tab-content");
+        tabs.forEach((tab) => tab.classList.remove("active"));
+        document.getElementById(tabId).classList.add("active");
+
+        const triggers = document.querySelectorAll(".tab-trigger");
+        triggers.forEach((button) => button.classList.remove("active"));
+
+        if (tabId === "accountTab") {
+          document
+            .querySelector(".tabs button:nth-child(1)")
+            .classList.add("active");
+        } else {
+          document
+            .querySelector(".tabs button:nth-child(2)")
+            .classList.add("active");
+        }
+      }
+    </script>
+  </body>
+</html>

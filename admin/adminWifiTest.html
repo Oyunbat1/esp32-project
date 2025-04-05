@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/admin/adminWifiTest.css" />
+    <title>Wifi</title>
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="filter">
+        <form id="loginForm" action="/connect" method="GET">
+          <h1>Esp32 wifi-аар нэвтрэх</h1>
+          <div class="form-group">
+            <div class="upper">
+              <label for="ssid">Wifi нэр <span>*</span></label>
+              <input
+                type="text"
+                id="ssid"
+                name="ssid"
+                placeholder="Wifi нэрээ оруулна уу"
+              />
+            </div>
+            <p
+              id="errorMessage1"
+              style="
+                color: red;
+                display: none;
+                position: absolute;
+                font-size: 10px;
+                top: 52px;
+                left: 10px;
+              "
+            >
+              Та wifi нэрээ оруулна уу!
+            </p>
+            <div class="down">
+              <label for="password">Wifi нууц үг <span>*</span></label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Нууц үгээ оруулна уу"
+              />
+            </div>
+            <p
+              id="errorMessage2"
+              style="
+                color: red;
+                display: none;
+                position: absolute;
+                font-size: 10px;
+                top: 134px;
+                left: 10px;
+              "
+            >
+              Нууц үг оруулна уу!
+            </p>
+            <div class="checkbox-group">
+              <input type="checkbox" id="showPassword" name="remember" />
+              <p>Нууц үг харах</p>
+            </div>
+          </div>
+          <button type="submit" id="HandleSubmit">Үргэлжлүүлэх</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const checkbox = document.getElementById("showPassword");
+      const passwordInput = document.getElementById("password");
+      const usernameInput = document.getElementById("ssid");
+      const form = document.getElementById("loginForm");
+      const errorMessage1 = document.getElementById("errorMessage1");
+      const errorMessage2 = document.getElementById("errorMessage2");
+
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          passwordInput.setAttribute("type", "text");
+        } else {
+          passwordInput.setAttribute("type", "password");
+        }
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (usernameInput.value === "" || passwordInput.value === "") {
+          errorMessage1.style.display =
+            usernameInput.value === "" ? "block" : "none";
+          errorMessage2.style.display =
+            passwordInput.value === "" ? "block" : "none";
+        } else {
+          errorMessage1.style.display = "none";
+          errorMessage2.style.display = "none";
+          window.location.href = "adminSetForm.html";
+        }
+      });
+
+      usernameInput.addEventListener("input", function () {
+        if (usernameInput.value !== "") {
+          errorMessage1.style.display = "none";
+        }
+
+        if (usernameInput.value === "" && passwordInput.value === "") {
+          errorMessage1.style.display = "block";
+          errorMessage2.style.display = "block";
+        }
+      });
+
+      passwordInput.addEventListener("input", function () {
+        if (passwordInput.value !== "") {
+          errorMessage2.style.display = "none";
+        }
+
+        if (usernameInput.value === "" && passwordInput.value === "") {
+          errorMessage1.style.display = "block";
+          errorMessage2.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>

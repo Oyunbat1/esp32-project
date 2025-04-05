@@ -1,0 +1,149 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+  }
+  .container {
+    background-image: url("/mubis_logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+
+  .container .filter{
+    backdrop-filter: blur(2px);
+    width: 100vw;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container form {
+    background-color: white;;
+
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 340px;
+    height: auto;
+  }
+  .container .filter form h1{
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    text-align: center;
+    font-size: 22px !important; 
+  }
+
+
+  .tabs {
+    display: flex;
+    background-color: #0118D8;
+    padding: 6px;
+    border-radius: 6px;
+    gap: 6px;
+
+  }
+  .tabs button {
+    padding: 10px 20px;
+    background-color: #1B56FD;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    flex: 1;
+  }
+  .tabs button:hover {
+    background-color: white;;
+    color: black;
+    transition: all 0.3s ease;
+  }
+  .tabs button.active {
+    background-color: white;
+    color: black;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+margin-top: 16px;
+    position: relative;
+  }
+  .form-group .upper,
+  .form-group .down {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .form-group label {
+    font-size: 12px;
+    color: #555;
+  }
+  .form-group label span {
+    color: red;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+  .form-group input {
+    padding: 10px;
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  .form-group input:hover {
+    border-color: #131313;
+    outline: none;
+  }
+  .form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  .form-group input::placeholder {
+    font-size: 12px;
+  }
+  .form-group .checkbox-group input {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    margin-top: 4px;
+  }
+  .form-group .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    position: absolute;
+    top: 150px;
+    right: 10px;
+  }
+  .form-group .checkbox-group p {
+    font-size: 12px;
+    color: #555;
+  }
+  .footer-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    background-color: #0118D8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 60px;
+  }
+  .footer-button:hover {
+    background-color: #1B56FD;
+    transition: all 0.3s ease;
+  }
+
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+  }

@@ -1,0 +1,228 @@
+html{
+  scroll-behavior: smooth;
+  height: 100vh;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+  .container .filter {
+    background-image: url("/bg-image.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+
+  .container .form {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 420px;
+  
+    margin-top: 80px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container .form .questions .options:first-child {
+    padding-bottom: 10px;
+  }
+  .container .form .questions .options:last-child {
+    padding-bottom: 20px;
+  }
+    /* .container .form .questions  {
+
+    } */
+  .container .form .questions  .backdrop{
+    background-color: white;
+    color: black;
+    border: black 1px solid;
+    height: 340px;
+    width: 390px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+  }
+  .container .form .questions form{
+    height: 190px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 380px;
+    margin-right: 10px;
+  }
+  .container .form .questions  .header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    border-top: 0.4px solid #333;
+   
+
+  }
+  .container .form .questions  .header button{
+    background-color: #0118d8;
+    width: 400px;
+  }
+  .container .form .questions  .header button:hover{
+    background-color: #1b56fd;
+  }
+  .container .form .questions form .header .last-input{
+    width:390px;
+    margin-right: 8px;
+  }
+  .container .form .questions form .header .last-input p{
+ text-align: start;
+    font-size: 14px;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    margin-left: 4px;
+  }
+  .container .form .questions form .header .last-input input {
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+  }
+  .container .form .questions form .header .last-input input:hover {
+    border-color: #131313;
+    outline: none;
+    
+  }
+  .container .form .questions form .header .last-input input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  .container .form .questions form .header .last-input input::placeholder {
+    padding-left: 8px;
+  }
+  .container .form .questions .options {
+    text-align: center;
+  }
+
+  .container .form .questions::-webkit-scrollbar {
+    display: none;
+  }
+
+  .container .form .questions .questions-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+  .container .form .exam-pdf {
+    width:400px;
+    height: 420px;
+    border-radius: 8px;
+    background-color: white;
+    border: black 1px solid;
+  }
+  .container .form .exam-pdf iframe {
+    height: 520px;
+    width: 100%;
+    border-radius: 8px;
+ 
+  }
+
+  .container .form button {
+    width: 100%;
+    height: 38px;
+    padding: 0 8px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    background-color: #131313;
+    margin-top: 10px;
+  }
+  .container .form button:hover {
+    background-color: #333;
+  }
+  .hamburger-menu {
+    display: block;
+    cursor: pointer;
+    z-index: 10;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  .hamburger-menu div {
+    width: 30px;
+    height: 4px;
+    background-color:white;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  .hamburger-menu.open div:nth-child(1) {
+    transform: rotate(45deg);
+    position: absolute;
+    top: 0;
+  }
+  .hamburger-menu.open div:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-menu.open div:nth-child(3) {
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 0;
+  }
+  .menu-options {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 16px;
+    background-color: #0118d8;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    padding: 20px;
+  }
+  .menu-options form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40px;
+    width: 360px;
+  }
+  .menu-options form button {
+    background-color: #1B56FD;
+    color: white;
+    width: 360px;
+    height: 30px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 6px;
+  }
+
+  .menu-options form button:hover {
+    background-color: white;;
+    color: black;
+  }
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+  }

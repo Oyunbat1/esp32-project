@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SetForm</title>
+  </head>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      box-sizing: border-box;
+    }
+
+    .container {
+      background-image: url("/bg-image-2.webp");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+    .container .filter .logo {
+      position: absolute;
+      right: 20px;
+    }
+    .container .form .header-form form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+    }
+    .container .form h2 {
+      font-size: 18px;
+      font-weight: 400;
+    }
+    .container .form .header-form form .first-input {
+      border: none;
+      padding: 4px;
+      background-color: #0118d8;
+      color: white;
+      border-radius: 6px;
+    }
+
+    .container .form .header-form form .first-input input {
+      cursor: pointer;
+      border-radius: 4px;
+      background-color: #1b56fd;
+      color: white;
+    }
+    .container .form .header-form form .second-input input {
+      cursor: pointer;
+      background-color: #0118d8;
+      color: white;
+      height: 30px;
+      width: 90px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .container .form {
+      background-color: white;
+      margin-top: 80px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 360px;
+      height: 740px;
+      position: relative;
+    }
+    .container .form .form-container {
+      border: 1px solid black;
+      border-radius: 6px;
+      height: 570px;
+      overflow-y: scroll;
+      margin-top: 20px;
+      padding-right: 10px;
+    }
+    .container .form .form-container form .questions-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      padding-bottom: 10px;
+    }
+
+    .container .form .form-container form button {
+      position: absolute;
+      bottom: 10px;
+      width: 90%;
+      height: 40px;
+      padding: 0 10px;
+      border-radius: 4px;
+      border: none;
+      color: white;
+      background-color: #0118d8;
+      margin-top: 10px;
+    }
+    .container .form .form-container form button:hover {
+      background-color: #1b56fd;
+    }
+    .container .form .form-container form .questions-container .options {
+      text-align: center;
+    }
+    .container
+      .form
+      .form-container
+      form
+      .questions-container
+      .options:nth-child(even) {
+      border-left: #333 1px solid;
+    }
+    .hamburger-menu {
+      display: block;
+      cursor: pointer;
+      z-index: 10;
+      position: relative;
+    }
+    .hamburger-menu div {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
+    .hamburger-menu.open div:nth-child(1) {
+      transform: rotate(45deg);
+      position: absolute;
+      top: 0;
+    }
+    .hamburger-menu.open div:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-menu.open div:nth-child(3) {
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 0;
+    }
+    .menu-options {
+      display: none;
+      position: absolute;
+      top: 114px;
+      right: 14px;
+      background-color: #0118d8;
+      border-radius: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 20;
+      padding: 20px;
+      width: 360px;
+    }
+    .menu-options form {
+      display: flex;
+      flex-direction: column;
+      height: 40px;
+    }
+    .menu-options form .form-container form {
+      height: 400px;
+      background-color: red;
+    }
+    .menu-options form button {
+      background-color: #1b56fd;
+      color: white;
+      width: 360px;
+      height: 30px;
+      border-radius: 4px;
+      border: none;
+      margin-top: 6px;
+    }
+
+    .menu-options form button:hover {
+      background-color: #c8c8c8;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+  </style>
+  <body>
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    <div class="container">
+      <div class="filter">
+        <div class="logo">
+          <div class="hamburger-menu" id="hamburgerMenu" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+
+        <div class="menu-options" id="menuOptions">
+          <form action="/push_data" method="GET">
+            <button type="submit" class="submit-btn">Шалгалт дуусгах</button>
+          </form>
+          <form action="/data_harah" method="GET">
+            <button type="submit" class="submit-btn">Шалгалтын дүн</button>
+          </form>
+        </div>
+        <div class="form">
+          <h2>Шалгалтын файл оруулах</h2>
+          <div class="header-form">
+            <form
+              method="POST"
+              action="/upload"
+              enctype="multipart/form-data"
+              id="upload_form"
+            >
+              <div class="first-input"><input type="file" name="file" /></div>
+              <div class="second-input">
+                <input type="submit" value="Upload" />
+              </div>
+            </form>
+          </div>
+          <h2>Шалгалтын асуулт тохируулах</h2>
+          <div class="form-container">
+            <form action="/admin" method="GET">
+              <div class="questions-container">
+                <div class="options">
+                  <h3>Асуулт 1</h3>
+                  <label
+                    ><input type="radio" name="a1" value="A" required />
+                    A</label
+                  >
+                  <label
+                    ><input type="radio" name="a1" value="B" required />
+                    B</label
+                  >
+                  <label
+                    ><input type="radio" name="a1" value="C" required />
+                    C</label
+                  >
+                  <label
+                    ><input type="radio" name="a1" value="D" required />
+                    D</label
+                  >
+                </div>
+                <div class="options">
+                  <h3>Асуулт 2</h3>
+                  <label
+                    ><input type="radio" name="a2" value="A" required />
+                    A</label
+                  >
+                  <label
+                    ><input type="radio" name="a2" value="B" required />
+                    B</label
+                  >
+                  <label
+                    ><input type="radio" name="a2" value="C" required />
+                    C</label
+                  >
+                  <label
+                    ><input type="radio" name="a2" value="D" required />
+                    D</label
+                  >
+                </div>
+                <div class="options">
+                  <h3>Асуулт 3</h3>
+                  <label
+                    ><input type="radio" name="a3" value="A" required />
+                    A</label
+                  >
+                  <label><input type="radio" name="a3" value="B" /> B</label>
+                  <label><input type="radio" name="a3" value="C" /> C</label>
+                  <label><input type="radio" name="a3" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 4</h3>
+                  <label><input type="radio" name="a4" value="A" /> A</label>
+                  <label><input type="radio" name="a4" value="B" /> B</label>
+                  <label><input type="radio" name="a4" value="C" /> C</label>
+                  <label><input type="radio" name="a4" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 5</h3>
+                  <label><input type="radio" name="a5" value="A" /> A</label>
+                  <label><input type="radio" name="a5" value="B" /> B</label>
+                  <label><input type="radio" name="a5" value="C" /> C</label>
+                  <label><input type="radio" name="a5" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 6</h3>
+                  <label><input type="radio" name="a6" value="A" /> A</label>
+                  <label><input type="radio" name="a6" value="B" /> B</label>
+                  <label><input type="radio" name="a6" value="C" /> C</label>
+                  <label><input type="radio" name="a6" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 7</h3>
+                  <label><input type="radio" name="a7" value="A" /> A</label>
+                  <label><input type="radio" name="a7" value="B" /> B</label>
+                  <label><input type="radio" name="a7" value="C" /> C</label>
+                  <label><input type="radio" name="a7" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 8</h3>
+                  <label><input type="radio" name="a8" value="A" /> A</label>
+                  <label><input type="radio" name="a8" value="B" /> B</label>
+                  <label><input type="radio" name="a8" value="C" /> C</label>
+                  <label><input type="radio" name="a8" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 9</h3>
+                  <label><input type="radio" name="a9" value="A" /> A</label>
+                  <label><input type="radio" name="a9" value="B" /> B</label>
+                  <label><input type="radio" name="a9" value="C" /> C</label>
+                  <label><input type="radio" name="a9" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 10</h3>
+                  <label><input type="radio" name="a10" value="A" /> A</label>
+                  <label><input type="radio" name="a10" value="B" /> B</label>
+                  <label><input type="radio" name="a10" value="C" /> C</label>
+                  <label><input type="radio" name="a10" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 11</h3>
+                  <label><input type="radio" name="a11" value="A" /> A</label>
+                  <label><input type="radio" name="a11" value="B" /> B</label>
+                  <label><input type="radio" name="a11" value="C" /> C</label>
+                  <label><input type="radio" name="a11" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 12</h3>
+                  <label><input type="radio" name="a12" value="A" /> A</label>
+                  <label><input type="radio" name="a12" value="B" /> B</label>
+                  <label><input type="radio" name="a12" value="C" /> C</label>
+                  <label><input type="radio" name="a12" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 13</h3>
+                  <label><input type="radio" name="a13" value="A" /> A</label>
+                  <label><input type="radio" name="a13" value="B" /> B</label>
+                  <label><input type="radio" name="a13" value="C" /> C</label>
+                  <label><input type="radio" name="a13" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 14</h3>
+                  <label><input type="radio" name="a14" value="A" /> A</label>
+                  <label><input type="radio" name="a14" value="B" /> B</label>
+                  <label><input type="radio" name="a14" value="C" /> C</label>
+                  <label><input type="radio" name="a14" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 15</h3>
+                  <label><input type="radio" name="a15" value="A" /> A</label>
+                  <label><input type="radio" name="a15" value="B" /> B</label>
+                  <label><input type="radio" name="a15" value="C" /> C</label>
+                  <label><input type="radio" name="a15" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 16</h3>
+                  <label><input type="radio" name="a16" value="A" /> A</label>
+                  <label><input type="radio" name="a16" value="B" /> B</label>
+                  <label><input type="radio" name="a16" value="C" /> C</label>
+                  <label><input type="radio" name="a16" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 17</h3>
+                  <label><input type="radio" name="a17" value="A" /> A</label>
+                  <label><input type="radio" name="a17" value="B" /> B</label>
+                  <label><input type="radio" name="a17" value="C" /> C</label>
+                  <label><input type="radio" name="a17" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 18</h3>
+                  <label><input type="radio" name="a18" value="A" /> A</label>
+                  <label><input type="radio" name="a18" value="B" /> B</label>
+                  <label><input type="radio" name="a18" value="C" /> C</label>
+                  <label><input type="radio" name="a18" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 19</h3>
+                  <label><input type="radio" name="a19" value="A" /> A</label>
+                  <label><input type="radio" name="a19" value="B" /> B</label>
+                  <label><input type="radio" name="a19" value="C" /> C</label>
+                  <label><input type="radio" name="a19" value="D" /> D</label>
+                </div>
+                <div class="options">
+                  <h3>Асуулт 20</h3>
+                  <label><input type="radio" name="a20" value="A" /> A</label>
+                  <label><input type="radio" name="a20" value="B" /> B</label>
+                  <label><input type="radio" name="a20" value="C" /> C</label>
+                  <label><input type="radio" name="a20" value="D" /> D</label>
+                </div>
+              </div>
+              <button class="btn confirm" id="confirmDialog">
+                Үргэлжлүүлэх
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const dialog = document.getElementById("dialog");
+      const openDialog = document.getElementById("openDialog");
+      const cancelDialog = document.getElementById("cancelDialog");
+      const confirmDialog = document.getElementById("confirmDialog");
+      const form = document.getElementById("loginForm");
+
+      openDialog.addEventListener("click", function () {
+        dialog.style.display = "flex";
+      });
+
+      cancelDialog.addEventListener("click", function () {
+        dialog.style.display = "none";
+      });
+
+      confirmDialog.addEventListener("click", function () {
+        form.submit();
+      });
+
+      function toggleMenu() {
+        const isMenuVisible = menuOptions.style.display === "block";
+        menuOptions.style.display = isMenuVisible ? "none" : "block";
+        overlay.style.display = isMenuVisible ? "none" : "block";
+        hamburgerMenu.classList.toggle("open");
+      }
+    </script>
+  </body>
+</html>
