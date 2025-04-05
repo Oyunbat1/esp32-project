@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <title>Нэвтрэх хэсэг</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --background-color: #fff;
+        --button-color: #0118d8;
+        --button-color-hover: #1b56fd;
+        --button-color-active: #0a0f7c;
+        --text-color: #fff;
+        --text-color-hover: black;
+        --font-family: "Roboto", Arial, sans-serif;
+      }
+      body {
+        font-family: var(--font-family);
+        background-image: url("../mubis_logo.webp");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        width: 100vw;
+      }
+      .container {
+        backdrop-filter: blur(2px);
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container form {
+        background-color: var(--background-color);
+        width: 380px;
+        height: auto;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .container form .tabs-content {
+        display: none;
+      }
+      .container form .tabs-content.active {
+        display: block;
+      }
+      .container form .footer-button {
+        width: 360px;
+        height: 40px;
+        padding: 6px;
+        background-color: var(--button-color);
+        color: var(--text-color);
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        margin-bottom: 20px;
+      }
+      .container form .footer-button:hover {
+        background-color: var(--button-color-hover);
+        cursor: pointer;
+      }
+      .container form .footer-button:focus {
+        background-color: var(--button-color);
+        cursor: pointer;
+      }
+      .container form h1 {
+        font-size: 24px;
+        font-family: var(--font-family);
+        font: bold;
+        text-align: center;
+        margin: 16px 0;
+      }
+      .container form .header-tabs {
+        display: flex;
+        background-color: var(--button-color);
+        width: 360px;
+        padding: 6px;
+        border-radius: 6px;
+        gap: 6px;
+      }
+      .container form .header-tabs button {
+        width: 170px;
+        height: 40px;
+        border-radius: 6px;
+        border: none;
+        background-color: var(--button-color-hover);
+        color: var(--text-color);
+      }
+      .container form .header-tabs button:hover {
+        background-color: var(--background-color);
+        cursor: pointer;
+        color: var(--text-color-hover);
+        transition: all 0.3s ease;
+      }
+      .container form .header-tabs button.active {
+        background-color: white;
+        color: black;
+      }
+
+      .container form .tabs-content .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        margin-top: 16px;
+        position: relative;
+      }
+      .container form .tabs-content .form-group .upper,
+      .container form .tabs-content .form-group .down {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .container form .tabs-content .form-group label {
+        font-size: 12px;
+        font-family: var(--font-family);
+        color: #333;
+      }
+      .container form .tabs-content .form-group label span {
+        color: red;
+        font-size: 16px;
+        margin-left: 5px;
+      }
+      .container form .tabs-content .form-group .upper input {
+        padding: 10px;
+        border-radius: 6px;
+        width: 360px;
+        height: 40px;
+        border: 1px solid #9b9b9b;
+      }
+      .container form .tabs-content .form-group .down {
+        margin-bottom: 30px;
+      }
+      .container form .tabs-content .form-group .down .input-pass-container {
+        padding: 10px;
+        border-radius: 6px;
+        width: 360px;
+        height: 40px;
+        border: 1px solid #9b9b9b;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .container
+        form
+        .tabs-content
+        .form-group
+        .down
+        .input-pass-container
+        input {
+        width: 340px;
+        height: 30px;
+        outline: none;
+        visibility: none;
+        border: none;
+      }
+      .container
+        form
+        .tabs-content
+        .form-group
+        .down
+        .input-pass-container
+        img {
+        cursor: pointer;
+      }
+
+      .container
+        form
+        .tabs-content
+        .form-group
+        .down
+        .input-pass-container:hover {
+        outline: none;
+        border-color: black;
+      }
+      .container form .tabs-content .form-group .upper input:hover {
+        outline: none;
+        border-color: black;
+      }
+      .container
+        form
+        .tabs-content
+        .form-group
+        .down
+        .input-pass-container:focus {
+        border-color: var(--button-color);
+        outline: none;
+      }
+
+      .container form .tabs-content .form-group .upper input:focus {
+        border-color: var(--button-color);
+        outline: none;
+      }
+      .container form .tabs-content .form-group .upper input::placeholder {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form id="login-form" action="/login" method="GET">
+        <h1>Цахим шалгалтын систем</h1>
+        <div class="header-tabs">
+          <button
+            type="button"
+            class="tab-trigger active"
+            onclick='showTab("customerTab")'
+          >
+            Хэрэглэгч
+          </button>
+          <button
+            type="button"
+            class="tab-trigger"
+            onclick='showTab("adminTab")'
+          >
+            Админ
+          </button>
+        </div>
+        <div id="customerTab" class="tabs-content active">
+          <div class="form-group">
+            <div class="upper">
+              <label for="username">Нэвтрэх нэр <span>*</span></label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Нэвтрэх нэрээ оруулна уу."
+              />
+            </div>
+            <p
+              id="errorMessage1"
+              style="
+                color: red;
+                display: none;
+                font-size: 10px;
+                position: absolute;
+                top: 64px;
+                left: 8px;
+              "
+            >
+              Та нэвтрэх нэрээ оруулна уу!
+            </p>
+            <div class="down">
+              <label for="password">Нууц үг <span>*</span></label>
+              <div class="input-pass-container">
+                <input
+                  type="password"
+                  id="passwordCustomer"
+                  name="password"
+                  placeholder="Нууц үгээ оруулна уу."
+                />
+                <img
+                  onclick="togglePasswordVisibility('customer')"
+                  id="eyeIconCustomer"
+                  src="/eye-closed.webp"
+                  alt="eye icon"
+                />
+              </div>
+            </div>
+            <p
+              id="errorMessage2"
+              style="
+                color: red;
+                display: none;
+                font-size: 10px;
+                position: absolute;
+                top: 146px;
+                left: 8px;
+              "
+            >
+              Нууц үг оруулна уу!
+            </p>
+          </div>
+        </div>
+
+        <div id="adminTab" class="tabs-content">
+          <div class="form-group">
+            <div class="upper">
+              <label for="adminUsername"
+                >Нэвтрэх нэр (Админ)<span>*</span></label
+              >
+              <input
+                type="text"
+                id="adminUsername"
+                name="adminUsername"
+                placeholder="Нэвтрэх нэрээ оруулна уу."
+              />
+            </div>
+            <p
+              id="errorMessage1Admin"
+              style="
+                color: red;
+                display: none;
+                font-size: 10px;
+                position: absolute;
+                top: 64px;
+                left: 8px;
+              "
+            >
+              Та нэвтрэх нэрээ оруулна уу!
+            </p>
+            <div class="down">
+              <label for="adminPassword">Нууц үг (Админ) <span>*</span></label>
+              <div class="input-pass-container">
+                <input
+                  type="password"
+                  id="adminPassword"
+                  name="adminPassword"
+                  placeholder="Нууц үгээ оруулна уу."
+                />
+                <img
+                  onclick="togglePasswordVisibility('admin')"
+                  id="eyeIconAdmin"
+                  src="/eye-closed.webp"
+                  alt="eye icon"
+                />
+              </div>
+            </div>
+            <p
+              id="errorMessage2Admin"
+              style="
+                color: red;
+                display: none;
+                font-size: 10px;
+                position: absolute;
+                top: 146px;
+                left: 8px;
+              "
+            >
+              Нууц үг оруулна уу!
+            </p>
+          </div>
+        </div>
+
+        <button class="footer-button" type="submit" id="HandleSubmit">
+          Нэвтрэх
+        </button>
+      </form>
+    </div>
+    <script>
+      const passwordCustomerInput = document.getElementById("passwordCustomer");
+      const usernameInput = document.getElementById("username");
+
+      const passwordAdminInput = document.getElementById("adminPassword");
+      const adminUsernameInput = document.getElementById("adminUsername");
+
+      const errorMessage1 = document.getElementById("errorMessage1");
+      const errorMessage2 = document.getElementById("errorMessage2");
+      const errorMessage1Admin = document.getElementById("errorMessage1Admin");
+      const errorMessage2Admin = document.getElementById("errorMessage2Admin");
+
+      const togglePasswordVisibility = (type) => {
+        if (type === "customer") {
+          const passwordInput = document.getElementById("passwordCustomer");
+          const eyeIcon = document.getElementById("eyeIconCustomer");
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.src = "/eye.webp";
+          } else {
+            passwordInput.type = "password";
+            eyeIcon.src = "/eye-closed.webp";
+          }
+        } else if (type === "admin") {
+          const passwordInput = document.getElementById("adminPassword");
+          const eyeIcon = document.getElementById("eyeIconAdmin");
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.src = "/eye.webp";
+          } else {
+            passwordInput.type = "password";
+            eyeIcon.src = "/eye-closed.webp";
+          }
+        }
+      };
+
+      function showTab(tabID) {
+        const tabs = document.querySelectorAll(".tabs-content");
+        tabs.forEach((tab) => tab.classList.remove("active"));
+        document.getElementById(tabID).classList.add("active");
+
+        const triggers = document.querySelectorAll(".tab-trigger");
+        triggers.forEach((trigger) => trigger.classList.remove("active"));
+
+        if (tabID === "customerTab") {
+          document
+            .querySelector(".header-tabs button:nth-of-type(1)")
+            .classList.add("active");
+        } else {
+          document
+            .querySelector(".header-tabs button:nth-of-type(2)")
+            .classList.add("active");
+        }
+      }
+
+      const form = document.getElementById("login-form");
+
+      form.addEventListener("submit", function (event) {
+        let hasError = false;
+
+        if (usernameInput.value === "" || passwordCustomerInput.value === "") {
+          event.preventDefault();
+          errorMessage1.style.display = "block";
+          errorMessage2.style.display = "block";
+          hasError = true;
+        } else {
+          errorMessage1.style.display = "none";
+          errorMessage2.style.display = "none";
+        }
+
+        if (
+          adminUsernameInput.value === "" ||
+          passwordAdminInput.value === ""
+        ) {
+          event.preventDefault();
+          errorMessage1Admin.style.display = "block";
+          errorMessage2Admin.style.display = "block";
+          hasError = true;
+        } else {
+          errorMessage1Admin.style.display = "none";
+          errorMessage2Admin.style.display = "none";
+        }
+
+        if (hasError) {
+          return;
+        }
+      });
+
+      usernameInput.addEventListener("input", function () {
+        if (usernameInput.value !== "") {
+          errorMessage1.style.display = "none";
+        }
+      });
+
+      passwordCustomerInput.addEventListener("input", function () {
+        if (passwordCustomerInput.value !== "") {
+          errorMessage2.style.display = "none";
+        }
+      });
+
+      adminUsernameInput.addEventListener("input", function () {
+        if (adminUsernameInput.value !== "") {
+          errorMessage1Admin.style.display = "none";
+        }
+      });
+
+      passwordAdminInput.addEventListener("input", function () {
+        if (passwordAdminInput.value !== "") {
+          errorMessage2Admin.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
