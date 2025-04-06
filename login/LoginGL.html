@@ -405,31 +405,53 @@
       form.addEventListener("submit", function (event) {
         let hasError = false;
 
-        if (usernameInput.value === "" || passwordCustomerInput.value === "") {
-          event.preventDefault();
-          errorMessage1.style.display = "block";
-          errorMessage2.style.display = "block";
-          hasError = true;
-        } else {
-          errorMessage1.style.display = "none";
-          errorMessage2.style.display = "none";
-        }
+        const isCustomerTabActive = document
+          .getElementById("customerTab")
+          .classList.contains("active");
+        const isAdminTabActive = document
+          .getElementById("adminTab")
+          .classList.contains("active");
 
-        if (
-          adminUsernameInput.value === "" ||
-          passwordAdminInput.value === ""
-        ) {
-          event.preventDefault();
-          errorMessage1Admin.style.display = "block";
-          errorMessage2Admin.style.display = "block";
-          hasError = true;
-        } else {
+        if (isCustomerTabActive) {
+          if (usernameInput.value === "") {
+            errorMessage1.style.display = "block";
+            hasError = true;
+          } else {
+            errorMessage1.style.display = "none";
+          }
+
+          if (passwordCustomerInput.value === "") {
+            errorMessage2.style.display = "block";
+            hasError = true;
+          } else {
+            errorMessage2.style.display = "none";
+          }
+
           errorMessage1Admin.style.display = "none";
           errorMessage2Admin.style.display = "none";
         }
 
+        if (isAdminTabActive) {
+          if (adminUsernameInput.value === "") {
+            errorMessage1Admin.style.display = "block";
+            hasError = true;
+          } else {
+            errorMessage1Admin.style.display = "none";
+          }
+
+          if (passwordAdminInput.value === "") {
+            errorMessage2Admin.style.display = "block";
+            hasError = true;
+          } else {
+            errorMessage2Admin.style.display = "none";
+          }
+
+          errorMessage1.style.display = "none";
+          errorMessage2.style.display = "none";
+        }
+
         if (hasError) {
-          return;
+          event.preventDefault();
         }
       });
 
